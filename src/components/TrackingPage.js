@@ -323,6 +323,7 @@ const handlefilteredDateTransactions=()=>{
               <div className="mb-4">
                 <label className="block text-gray-700">Type:</label>
                 <select className="w-full p-2 border border-gray-300 rounded" onChange={(e)=>setType(e.target.value)} >
+                 <option value="Choose">Choose</option>
                   <option value="Credit">Credit</option>
                   <option value="Expense">Expense</option>
                  
