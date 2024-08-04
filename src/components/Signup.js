@@ -12,7 +12,7 @@ export default function Signup() {
     const navigate=useNavigate()
     const handlesubmit=(e)=>{
         e.preventDefault()
-        axios.post('http://localhost:3001/api/auth/register', {
+        axios.post('https://budget-tracking-application-backend.onrender.com/api/auth/register', {
           email: email,
           password: password
       })
