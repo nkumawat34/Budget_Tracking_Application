@@ -63,7 +63,7 @@ export default function TrackingPage() {
     // Define an async function inside useEffect
     const fetchTransactions = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/api/users/${email}/transactions`);
+            const response = await axios.get(`https://budget-tracking-application-backend.onrender.com/api/users/${email}/transactions`);
             // Map through transactions and update dateTime
 const formattedTransactions = response.data.map(transaction => ({
   ...transaction,
@@ -120,7 +120,7 @@ const formattedDate = date1.toISOString().split('T')[0];
     try {
     
         // Send form data to the server
-        const response = await axios.post(`http://localhost:3001/api/users/${userId}/transactions`, {
+        const response = await axios.post(`https://budget-tracking-application-backend.onrender.com/api/users/${userId}/transactions`, {
           date:formattedDate,  
           title:title,
             amount:amount,
@@ -153,7 +153,7 @@ const date = new Date(isoDateString);
 const formattedDate = date.toISOString().split('T')[0];
     try{
       
-    const response=await axios.put(`http://localhost:3001/api/users/${email}/transactions/${transactionId}`,
+    const response=await axios.put(`https://budget-tracking-application-backend.onrender.com/api/users/${email}/transactions/${transactionId}`,
       {
         date:formattedDate,  
     title:title,
@@ -178,7 +178,7 @@ const handleDelete = async (transactionId) => {
 
   try {
     // Make an API call to delete the transaction
-    await axios.delete(`http://localhost:3001/api/users/${email}/transactions/${transactionId}`);
+    await axios.delete(`https://budget-tracking-application-backend.onrender.com/api/users/${email}/transactions/${transactionId}`);
     
     // Optionally, update the state to remove the deleted transaction from the UI
     
