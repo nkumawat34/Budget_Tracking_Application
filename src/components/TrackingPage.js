@@ -86,14 +86,15 @@ const formattedTransactions = response.data.map(transaction => ({
 // Filter transactions based on selected type
 useEffect(() => {
  
+  
   if (selectedType === 'All') {
     setTransactions(defaulttransactions);
-    calculatetotal(defaulttransactions)
+   // calculatetotal(defaulttransactions)
   } else {
     
     const transaction1=defaulttransactions.filter(tx => tx.type === selectedType)
     setTransactions(transaction1);
-    calculatetotal(transaction1)
+    //calculatetotal(transaction1)
   }
   
 }, [selectedType]);
@@ -216,8 +217,14 @@ const handlefilteredDateTransactions=()=>{
   } else if (endDate) {
     filtered = filtered.filter(tx => new Date(tx.date) <= new Date(endDate));
   }
-
+  if(selectedType!="All")
+  {
+  const transaction1=filtered.filter(tx => tx.type === selectedType)
+  setTransactions(transaction1);
+  }
+  else
   setTransactions(filtered)
+  //setTransactions(filtered)
 }
   const searchFunctionality = () => {
     // Convert searchTerm to lowercase for case-insensitive comparison

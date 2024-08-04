@@ -5,9 +5,9 @@ const transactionRoutes=require('./routes/transactionRoutes')
 const app = express()
 const port = 3001
 const cors=require('cors')
-
+require('dotenv').config();
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://nkumawat34:nkumawat34@cluster0.6msxxm4.mongodb.net/Expense_Management_Tracking', {
+mongoose.connect(process.env.MONGO_DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

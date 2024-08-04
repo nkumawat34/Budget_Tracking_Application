@@ -6,7 +6,7 @@ import { BrowserRouter,Route,Routes } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import signup from './components/Signup';
 import TrackingPage from './components/TrackingPage';
-import BackgroundImage from './Assets/background.jpeg'
+import BackgroundImage from './Assets/background.jpg'
 import { MyContext } from "./contextapi/Context_api"
 function App() {
 
