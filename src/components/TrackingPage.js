@@ -63,10 +63,18 @@ export default function TrackingPage() {
   useEffect(() => {
     // Define an async function inside useEffect
    
-    setToken(localStorage.getItem(email+'token'))
     const fetchTransactions = async () => {
+
+     const token1=localStorage.getItem('token'+email)
+     setToken(token1)
         try {
-            const response = await axios.get(`https://budget-tracking-application-backend.onrender.com/api/users/${email}/transactions`);
+
+          const response = await axios.get(`https://budget-tracking-application-backend.onrender.com/api/users/${email}/transactions`, {
+            headers: {
+                'Authorization': `Bearer ${token1}`, // Replace with your actual token or header
+                'Content-Type': 'application/json' // Optional, depending on your API requirements
+            }
+        });
             // Map through transactions and update dateTime
 const formattedTransactions = response.data.map(transaction => ({
   ...transaction,
