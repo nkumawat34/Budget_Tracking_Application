@@ -62,8 +62,8 @@ export default function TrackingPage() {
 };
   useEffect(() => {
     // Define an async function inside useEffect
-    const token1=localStorage.getItem(email+'token')
-    setToken(token1)
+   
+    setToke(localStorage.getItem(email+'token'))
     const fetchTransactions = async () => {
         try {
             const response = await axios.get(`https://budget-tracking-application-backend.onrender.com/api/users/${email}/transactions`,
