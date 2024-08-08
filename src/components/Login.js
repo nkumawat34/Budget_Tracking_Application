@@ -12,7 +12,7 @@ export default function Login() {
     const handlesubmit=(e)=>{
 
       e.preventDefault()
-      axios.post('http://localhost:3001/api/auth/login', {
+      axios.post('https://budget-tracking-application-backend.onrender.com/api/auth/login', {
         email: email,
         password: password
     })

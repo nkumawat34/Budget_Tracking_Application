@@ -38,6 +38,7 @@ export default function TrackingPage() {
   const [totalSaving,setTotalSaving]=useState(0)
   const[totalAmount,setTotalAmount]=useState(0)
   const[search,setSearch]=useState('')
+  const [token,setToken]=useState('')
   const handlelogout=()=>{
 
     localStorage.removeItem(email+'token');
@@ -61,9 +62,17 @@ export default function TrackingPage() {
 };
   useEffect(() => {
     // Define an async function inside useEffect
+    const token1=localStorage.getItem(email+'token')
+    setToken(token1)
     const fetchTransactions = async () => {
         try {
-            const response = await axios.get(`https://budget-tracking-application-backend.onrender.com/api/users/${email}/transactions`);
+            const response = await axios.get(`https://budget-tracking-application-backend.onrender.com/api/users/${email}/transactions`,
+              {
+                headers: {
+                  'Authorization': `Bearer ${token}`
+                }
+              }
+            );
             // Map through transactions and update dateTime
 const formattedTransactions = response.data.map(transaction => ({
   ...transaction,
@@ -127,7 +136,13 @@ const formattedDate = date1.toISOString().split('T')[0];
             amount:amount,
             type:type,
             category:category
-        })
+        }, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+          
+        )
         setTransactions([...transactions,response.data])
         calculatetotal([...transactions,response.data])
         // Handle successful response
@@ -161,6 +176,10 @@ const formattedDate = date.toISOString().split('T')[0];
       amount:amount,
       type:type,
       category:category
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       }
     ).then(response=>{
       
@@ -179,7 +198,13 @@ const handleDelete = async (transactionId) => {
 
   try {
     // Make an API call to delete the transaction
-    await axios.delete(`https://budget-tracking-application-backend.onrender.com/api/users/${email}/transactions/${transactionId}`);
+    await axios.delete(`https://budget-tracking-application-backend.onrender.com/api/users/${email}/transactions/${transactionId}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
     
     // Optionally, update the state to remove the deleted transaction from the UI
     
@@ -323,6 +348,7 @@ const handlefilteredDateTransactions=()=>{
               <div className="mb-4">
                 <label className="block text-gray-700">Type:</label>
                 <select className="w-full p-2 border border-gray-300 rounded" onChange={(e)=>setType(e.target.value)} >
+                  <option value="Choose">Choose</option>
                   <option value="Credit">Credit</option>
                   <option value="Expense">Expense</option>
                  
