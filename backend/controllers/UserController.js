@@ -40,7 +40,7 @@ exports.register = async (req, res) => {
                 id: user.id
             }
         };
-        const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: '1h' });
+        const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: '7d' });
 
         res.status(201).json({ token });
     } catch (err) {
