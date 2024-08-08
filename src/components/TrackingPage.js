@@ -61,19 +61,12 @@ export default function TrackingPage() {
     return dateTime.split('T')[0]; // Extract date part before 'T'
 };
   useEffect(() => {
-    
-    const token1=localStorage.getItem('token'+email)
+    // Define an async function inside useEffect
    
+    setToken(localStorage.getItem(email+'token'))
     const fetchTransactions = async () => {
         try {
-            const response = await axios.get(`https://budget-tracking-application-backend.onrender.com/api/users/${email}/transactions`,
-              {
-                headers: {
-                  'Authorization': `Bearer ${token1}`
-                }
-              }
-            );
-          
+            const response = await axios.get(`https://budget-tracking-application-backend.onrender.com/api/users/${email}/transactions`);
             // Map through transactions and update dateTime
 const formattedTransactions = response.data.map(transaction => ({
   ...transaction,
