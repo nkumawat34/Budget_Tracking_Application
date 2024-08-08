@@ -28,6 +28,12 @@
       "not dead",
       "not op_mini all"
     ],
+      "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
