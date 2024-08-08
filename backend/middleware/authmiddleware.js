@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 // Middleware function to verify JWT
 const authenticateJWT = (req, res, next) => {
   // Get the token from the Authorization header
-  const authHeader = req.headers['Authorization'];
+  const authHeader = req.headers['authorization'];
   if (!authHeader) return res.sendStatus(401);
 
   // Extract the token
