@@ -19,8 +19,9 @@ export default function Login() {
     .then(response => {
         // Handle the response data here
         console.log(response.data);
+         localStorage.setItem('token'+email,response.data.token)
         navigate('/trackingpage', { state: { email } });
-        //localStorage.setItem('token'+email,response.data)
+       
     })
     .catch(error => {
         // Handle any errors here
