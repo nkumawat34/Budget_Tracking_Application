@@ -40,7 +40,7 @@ export default function TrackingPage() {
   const[search,setSearch]=useState('')
   const handlelogout=()=>{
 
-    localStorage.removeItem(email+'token');
+    localStorage.removeItem('token'+email);
     navigate("/")
   }
 
