@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { CiSearch } from "react-icons/ci";
 import axios from 'axios';
 import PieChart from './PieChart';
+
 export default function TrackingPage() {
   const backgroundImage = useContext(MyContext);
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +47,7 @@ export default function TrackingPage() {
   }
 
   const calculatetotal=(transactions)=>{
-    console.log(transactions)
+   // console.log(transactions)
     const expenses = transactions.filter(transaction => transaction.type === 'Expense');
     const savings = transactions.filter(transaction => transaction.type === 'Credit');
 
@@ -102,7 +103,7 @@ useEffect(() => {
     setTransactions(defaulttransactions);
    // calculatetotal(defaulttransactions)
   } else {
-    
+   // console.log(defaulttransactions)
     const transaction1=defaulttransactions.filter(tx => tx.type === selectedType)
     setTransactions(transaction1);
     //calculatetotal(transaction1)
@@ -210,10 +211,14 @@ const handleDelete = async (transactionId) => {
     
     // Optionally, update the state to remove the deleted transaction from the UI
     
-    setTransactions(prevTransactions => 
-      prevTransactions.filter(transaction => transaction._id !== transactionId)
+    setTransactions(prevTransactions => {
+      const filteredTransactions = prevTransactions.filter(transaction => transaction._id !== transactionId);
+      setDefaultTransactions(filteredTransactions)
       
-    );
+      return filteredTransactions;
+    });
+    
+    
     
   } catch (error) {
     console.error('Error deleting transaction:', error);

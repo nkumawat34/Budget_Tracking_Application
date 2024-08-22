@@ -3,14 +3,16 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { MyContext } from '../contextapi/Context_api';
 import { useContext } from 'react';
+import { RotatingLines } from "react-loader-spinner";
 export default function Login() {
 
     const [email,setEmail]=useState('')
     const[password,setPassword]=useState('')
+    const [loading,setLoading]=useState(false)
     const navigate=useNavigate()
     const backgroundImage = useContext(MyContext);
     const handlesubmit=(e)=>{
-
+      setLoading(true)
       e.preventDefault()
       axios.post('https://budget-tracking-application-backend.onrender.com/api/auth/login', {
         email: email,
@@ -21,13 +23,15 @@ export default function Login() {
         console.log(response.data);
          localStorage.setItem('token'+email,response.data.token)
         navigate('/trackingpage', { state: { email } });
-       
+        setLoading(false)
     })
     .catch(error => {
         // Handle any errors here
+        alert("user authentication failed")
         console.error('Error:', error);
     });
-
+   // alert(loading)
+    
     }
   return (
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -61,12 +65,19 @@ export default function Login() {
         <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
       </div>
       <div class='flex flex-row justify-center'>
-        <div>Don't have an account <span class='font-bold mx-2'>Register</span></div>
+        <div>Don't have an account <span class='font-bold mx-2'><button onClick={()=>navigate('/signup')}> Register</button></span></div>
       </div>
     </form>
 
     
   </div>
+  {loading?<div class='flex justify-center'><RotatingLines
+      strokeColor="grey"
+      strokeWidth="5"
+      animationDuration="0.75"
+      width="96"
+      visible={true}
+    /></div>:""}
 </div>
   )
 }

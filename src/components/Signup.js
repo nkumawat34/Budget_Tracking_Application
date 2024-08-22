@@ -20,7 +20,7 @@ export default function Signup() {
           // Handle the response data here
           console.log(response.data);
           navigate('/trackingpage', { state: { email } });
-          //localStorage.setItem('token'+email,response.data)
+          localStorage.setItem('token'+email,response.data.token)
       })
       .catch(error => {
           // Handle any errors here
