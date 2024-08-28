@@ -23,14 +23,14 @@ export default function Login() {
         console.log(response.data);
          localStorage.setItem('token'+email,response.data.token)
         navigate('/trackingpage', { state: { email } });
-        setLoading(false)
+        
     })
     .catch(error => {
         // Handle any errors here
         alert("user authentication failed")
         console.error('Error:', error);
     });
-   // alert(loading)
+  setLoading(false)
     
     }
   return (
