@@ -43,11 +43,13 @@ To run this project locally, follow the instructions below.
    cd budget-tracking-app
 
 2. **Front End**
-   
-   ```npm start
+```   
+   npm start
    Application will run at localhost:3000
+```
 3. **Backend**
-
-   ```cd backend
-       node index.js
+```
+   cd backend
+   node index.js
+```
 Now both front end and backend are running   
