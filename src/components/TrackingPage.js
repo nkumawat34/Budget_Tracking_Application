@@ -466,16 +466,16 @@ const handlefilteredDateTransactions=()=>{
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Financial Summary</h2>
       <div className="bg-gray-100 p-4 rounded-md shadow-inner">
         <p className="text-lg font-medium text-gray-700">Total Expenses:</p>
-        <p className="text-xl font-bold text-red-600">${Number(totalExpense).toFixed(2)}</p>
+        <p className="text-xl font-bold text-red-600">&#8377;{Number(totalExpense).toFixed(2)}</p>
       </div>
       <div className="bg-gray-100 p-4 rounded-md shadow-inner mt-4">
         <p className="text-lg font-medium text-gray-700">Total Savings:</p>
-        <p className="text-xl font-bold text-green-600">${Number(totalSaving).toFixed(2)}</p>
+        <p className="text-xl font-bold text-green-600">&#8377;{Number(totalSaving).toFixed(2)}</p>
       </div>
       <div className="bg-gray-100 p-4 rounded-md shadow-inner mt-4">
         <p className="text-lg font-medium text-gray-700">Total Amount (Savings - Expenses):</p>
         <p className={`text-xl font-bold ${totalAmount >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-          ${Number(totalAmount).toFixed(2)}
+          &#8377;{Number(totalAmount).toFixed(2)}
         </p>
       </div>
     </div>
