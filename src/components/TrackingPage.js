@@ -166,10 +166,10 @@ const handleEditTransaction=async (e)=>{
 
   e.preventDefault()
   const isoDateString = date;
-const date = new Date(isoDateString);
+const date_new = new Date(isoDateString);
 
 // Format date to YYYY-MM-DD
-const formattedDate = date.toISOString().split('T')[0];
+const formattedDate = date_new.toISOString().split('T')[0];
     try{
       
     const response=await axios.put(`https://budget-tracking-application-backend.onrender.com/api/users/${email}/transactions/${transactionId}`,
@@ -186,6 +186,9 @@ const formattedDate = date.toISOString().split('T')[0];
       }
     ).then(response=>{
       
+      alert('Transaction Updated successfully!');
+      window.location.reload();
+      console.log(response)
 
     })
   }
